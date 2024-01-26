@@ -1,1 +1,73 @@
-i am brendon
+<h1>Hey</h1>
+
+You can call me Brendo.
+
+<br />
+
+<h2>Work</h2>
+
+My experience:
+
+<ul>
+  <li>building product</li>
+  <li>creating developer tools</li>
+  <li>taking stability rates from 90% to 99.9%</li>
+</ul>
+
+Recent areas of focus:
+
+<ul>
+  <li><a target="_blank" href="https://chrome.google.com/webstore/detail/loom-for-chrome/liecbddmkiiihnedobmlmillhodjkdmb">Loom for Chrome</a></li>
+  <li><a target="_blank" href="https://loom.com/desktop">The Loom Desktop app</a></li>
+  <li><a target="_blank" href="https://www.npmjs.com/package/@loomhq/record-sdk">@loomhq/record-sdk</a></li>
+</ul>
+
+<h3>@loomhq/record-sdk</h3>
+
+<button id="record">Demo</button>
+
+<script type="module">
+(async () => {
+  const button = document.querySelector('#record');
+
+  if (button == null) {
+    console.warn('<button> did not exist. Exiting early');
+    return
+  }
+
+  const sdk = await import('https://unpkg.com/@loomhq/record-sdk/dist/esm/index.js')
+
+  const {
+    supported,
+    error
+  } = await sdk.isSupported();
+
+  const publicAppId = 'cf421a7e-0945-42ad-8132-57432a0432dd'
+
+  const instance = await sdk.setup({
+    publicAppId,
+  });
+
+  instance.configureButton({
+    element: button,
+    hooks: {
+      onInsertClicked: (oembed) => {
+        console.log(["received oembed", oembed.toString()]);
+      },
+      onRecordingComplete: (video) => {
+        console.log(["recording complete", video]);
+      },
+      onUploadComplete: (video) => {
+        console.log(["upload complete", video]);
+      }
+    }
+  })
+})()
+</script>
+
+<h2>Social</h2>
+
+  <ul>
+    <li><a target="_blank" href="https://linkedin.com/in/brendonjohnmuschamp">Linkedin</a></li>
+    <li><a target="_blank" href="https://twitter.com/iambrendonjohn">Twitter</a></li>
+  </ul>

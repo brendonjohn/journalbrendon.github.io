@@ -44,6 +44,5 @@
     },
   });
 
-  button.innerHTML = 'Record 🔴';
-
+  button.innerHTML = "Record ⏺";
 })();

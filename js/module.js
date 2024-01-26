@@ -44,6 +44,6 @@
     },
   });
 
-  button.innerHTML = 'Demo the Recorder';
+  button.innerHTML = 'Record 🔴';
 
 })();

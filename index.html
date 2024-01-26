@@ -24,46 +24,9 @@ Recent areas of focus:
 
 <h3>@loomhq/record-sdk</h3>
 
-<button id="record">Demo</button>
+<button id="record">...Loading...</button>
 
-<script type="module">
-(async () => {
-  const button = document.querySelector('#record');
-
-  if (button == null) {
-    console.warn('<button> did not exist. Exiting early');
-    return
-  }
-
-  const sdk = await import('https://unpkg.com/@loomhq/record-sdk/dist/esm/index.js')
-
-  const {
-    supported,
-    error
-  } = await sdk.isSupported();
-
-  const publicAppId = 'cf421a7e-0945-42ad-8132-57432a0432dd'
-
-  const instance = await sdk.setup({
-    publicAppId,
-  });
-
-  instance.configureButton({
-    element: button,
-    hooks: {
-      onInsertClicked: (oembed) => {
-        console.log(["received oembed", oembed.toString()]);
-      },
-      onRecordingComplete: (video) => {
-        console.log(["recording complete", video]);
-      },
-      onUploadComplete: (video) => {
-        console.log(["upload complete", video]);
-      }
-    }
-  })
-})()
-</script>
+<script type="module" src="js/module.js"></script>
 
 <h2>Social</h2>
 

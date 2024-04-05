@@ -7,14 +7,14 @@
     return;
   }
 
-  const sdk = await import(
-    "https://unpkg.com/@loomhq/record-sdk/dist/esm/index.js"
+  const { isSupported } = await import(
+    "https://unpkg.com/@loomhq/record-sdk/dist/esm/is-supported.js"
   );
 
-  const { supported, error } = await sdk.isSupported();
+  const { supported, error } = await isSupported();
 
   if (supported !== true || error != null) {
-    button.innerHTML = "Failed to load";
+    button.innerHTML = "Not supported";
 
     if (error) {
       console.log("Error message: ", error.message);
@@ -23,11 +23,20 @@
     return;
   }
 
+  const sdk = await import(
+    "https://unpkg.com/@loomhq/record-sdk/dist/esm/index.js"
+  );
+
   const publicAppId = "cf421a7e-0945-42ad-8132-57432a0432dd";
 
   const instance = await sdk.setup({
     publicAppId,
   });
+
+  if (!instance.status().success) {
+    button.innerHTML = "Failed to setup";
+    return;
+  }
 
   instance.configureButton({
     element: button,

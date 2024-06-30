@@ -28,9 +28,11 @@
   );
 
   const publicAppId = "cf421a7e-0945-42ad-8132-57432a0432dd";
+  // const publicAppId = "fd40b2c6-cd4f-483f-9553-6ebf3de31b0c";
 
   const instance = await sdk.setup({
     publicAppId,
+    // environment: "development",
   });
 
   if (!instance.status().success) {
